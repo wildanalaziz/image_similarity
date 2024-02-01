@@ -8,7 +8,7 @@ arrival = st.sidebar.file_uploader("Arrival Photo", type=["jpg", "jpeg"])
 
 proses = st.sidebar.button("Check Similarity")
 if proses:
-    similarity_score = similiarity.get_similarity_score(origin, arrival)
+    similarity_score, origin_fg, arrival_fg = similiarity.get_similarity_score(origin, arrival)
     st.title("Similarity Score")
     st.header(similarity_score[0])
 
@@ -19,3 +19,11 @@ if proses:
     if arrival is not None:
         with col2:
             st.image(arrival, caption="Arrival Photo")
+
+    col3, col4 = st.columns(2)
+    if origin is not None:
+        with col3:
+            st.image(origin_fg, caption="Origin Photo")
+    if arrival is not None:
+        with col4:
+            st.image(arrival_fg, caption="Arrival Photo")
